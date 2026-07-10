@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ytpipe - Settings</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      font-size: 13px;
+      background: #f0f0f0;
+      color: #222;
+      padding: 30px 20px;
+    }
+
+    .container {
+      max-width: 540px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #ccc;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      background: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+      user-select: none;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .header .ver {
+      font-size: 11px;
+      color: #888;
+      font-weight: 400;
+      margin-left: auto;
+    }
+
+    .body {
+      padding: 18px;
+    }
+
+    .fieldset {
+      border: 1px solid #ddd;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      background: #fafafa;
+    }
+
+    .fieldset legend {
+      font-size: 12px;
+      font-weight: 600;
+      color: #666;
+      padding: 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 3px;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    input[type="url"], input[type="text"] {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #bbb;
+      font-size: 13px;
+      font-family: inherit;
+      color: #222;
+      background: #fff;
+    }
+
+    input:focus {
+      border-color: #c00;
+      outline: none;
+    }
+
+    input:disabled {
+      background: #eee;
+      color: #999;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle-row label {
+      margin-bottom: 0;
+      font-weight: 400;
+      font-size: 12px;
+      color: #222;
+    }
+
+    .toggle-row input[type="checkbox"] {
+      width: auto;
+    }
+
+    #status {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 10px;
+      min-height: 18px;
+      color: #2e7d32;
+    }
+
+    #status.error {
+      color: #c00;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 8px 0;
+      border: 1px solid #bbb;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #fff;
+      color: #333;
+    }
+
+    .btn:hover {
+      background: #f0f0f0;
+    }
+
+    .btn:active {
+      background: #e5e5e5;
+    }
+
+    .btn.primary {
+      background: #c00;
+      color: #fff;
+      border-color: #a00;
+    }
+
+    .btn.primary:hover {
+      background: #a00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="icons/icon48.png" width="24" height="24" alt="">
+      <h1>ytpipe</h1>
+      <span class="ver">1.0</span>
+    </div>
+
+    <div class="body">
+      <div class="fieldset">
+        <legend>Piped Instance</legend>
+        <div class="field">
+          <label for="pipedInstance">Instance URL</label>
+          <div class="hint">e.g. https://piped.video, https://pipedapi.kavin.rocks</div>
+          <input type="url" id="pipedInstance" placeholder="https://piped.video">
+        </div>
+      </div>
+
+      <div class="fieldset">
+        <legend>Homepage</legend>
+        <div class="field">
+          <div class="toggle-row">
+            <input type="checkbox" id="useHomepageUrl">
+            <label for="useHomepageUrl">Redirect YouTube homepage to another URL</label>
+          </div>
+          <div class="hint" style="margin-top:6px">
+            When enabled, visiting youtube.com (no specific video) redirects to the URL below.
+            Useful with FreshRSS or another aggregator as your homepage.
+          </div>
+        </div>
+        <div class="field">
+          <label for="homepageUrl">Custom URL</label>
+          <input type="url" id="homepageUrl" placeholder="https://freshrss.example.com" disabled>
+        </div>
+      </div>
+
+      <div class="fieldset">
+        <legend>Piped Redirects</legend>
+        <div class="field">
+          <div class="toggle-row">
+            <input type="checkbox" id="redirectFeed">
+            <label for="redirectFeed">Redirect /feed (subscriptions)</label>
+          </div>
+          <div class="hint" style="margin-top:6px">
+            When visiting Piped's subscription page, redirect to another URL.
+          </div>
+        </div>
+        <div class="field">
+          <label for="feedRedirectUrl">URL for /feed</label>
+          <input type="url" id="feedRedirectUrl" placeholder="https://freshrss.example.com" disabled>
+        </div>
+
+        <div class="field" style="margin-top:14px">
+          <div class="toggle-row">
+            <input type="checkbox" id="redirectTrending">
+            <label for="redirectTrending">Redirect /trending</label>
+          </div>
+          <div class="hint" style="margin-top:6px">
+            When visiting Piped's trending page, redirect to another URL.
+          </div>
+        </div>
+        <div class="field">
+          <label for="trendingRedirectUrl">URL for /trending</label>
+          <input type="url" id="trendingRedirectUrl" placeholder="https://example.com" disabled>
+        </div>
+      </div>
+
+      <button class="btn primary" id="save">Save Settings</button>
+      <div id="status"></div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
